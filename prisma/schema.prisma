@@ -1,0 +1,114 @@
+// LeadNest — data model
+// Design notes (see README "Data modeling"):
+//  - A Lead is the aggregate root. Notes and Activities hang off it and are
+//    append-only, which gives a trustworthy audit trail for free.
+//  - Activity is the single source of truth for "what happened". Notes and
+//    status/assignment changes all emit an Activity row, so the timeline is
+//    one query, ordered by createdAt.
+//  - Role lives on User as an enum, not a free-text string, so the DB itself
+//    rejects an invalid role. Permission logic keys off this enum.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  MEMBER
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  PROPOSAL
+  WON
+  LOST
+}
+
+enum ActivityType {
+  LEAD_CREATED
+  STATUS_CHANGED
+  ASSIGNED
+  UNASSIGNED
+  NOTE_ADDED
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  role      Role     @default(MEMBER)
+  password  String // bcrypt hash, never returned by the API
+  createdAt DateTime @default(now())
+
+  assignedLeads Lead[]     @relation("AssignedLeads")
+  notes         Note[]
+  activities    Activity[]
+
+  @@map("users")
+}
+
+model Lead {
+  id        String     @id @default(cuid())
+  name      String
+  email     String
+  company   String?
+  phone     String?
+  source    String? // e.g. "website", "referral"
+  message   String?
+  status    LeadStatus @default(NEW)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  assignedToId String?
+  assignedTo   User?   @relation("AssignedLeads", fields: [assignedToId], references: [id], onDelete: SetNull)
+
+  notes      Note[]
+  activities Activity[]
+
+  // Common access patterns are index-backed: filter by status/assignee,
+  // default list is newest-first.
+  @@index([status])
+  @@index([assignedToId])
+  @@index([createdAt])
+  @@map("leads")
+}
+
+model Note {
+  id        String   @id @default(cuid())
+  body      String
+  createdAt DateTime @default(now())
+
+  leadId   String
+  lead     Lead   @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@index([leadId])
+  @@map("notes")
+}
+
+model Activity {
+  id      String       @id @default(cuid())
+  type    ActivityType
+  // Human-readable summary rendered directly in the timeline.
+  summary String
+  // Structured before/after payload for status/assignment changes.
+  meta      Json?
+  createdAt DateTime @default(now())
+
+  leadId String
+  lead   Lead   @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  // Nullable: the public capture form has no logged-in actor.
+  actorId String?
+  actor   User?   @relation(fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([leadId, createdAt])
+  @@map("activities")
+}
