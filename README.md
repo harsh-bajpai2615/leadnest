@@ -235,6 +235,25 @@ All use password **`Password123!`**.
 - **The proxy is UX, not security.** All real authorization is re-checked
   server-side on every request.
 
+## Known limitations & what I'd do next
+
+Deliberate scope calls, called out so they're decisions rather than oversights:
+
+- **No rate limiting** on login / public capture. In-memory limiting is
+  near-useless on serverless (per-instance), so doing it right needs a shared
+  store (e.g. Upstash Redis). That's the first thing I'd add for a real launch.
+- **Sessions are stateless JWTs** — logout clears the cookie but can't revoke an
+  already-issued token before expiry. Fine for this scope; a token
+  version/denylist is the upgrade if instant revocation is required.
+- **Use Neon's pooled connection string on Vercel** (see `DEPLOY.md`) — the
+  direct string works for a demo but can exhaust connections under real load.
+
+Hardening already in place: httpOnly + `SameSite=Lax` + `Secure` session cookie,
+bcrypt hashing, account-enumeration-safe login, Zod validation at every endpoint,
+same-site-only login redirect (no open redirect), and baseline security headers
+(`X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`,
+`Permissions-Policy`).
+
 ## Where I used AI
 
 I used Claude (Anthropic) as a pair-programmer throughout. It scaffolded the
