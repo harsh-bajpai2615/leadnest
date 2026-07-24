@@ -6,7 +6,12 @@ import { useRouter, useSearchParams } from "next/navigation";
 export function LoginForm() {
   const router = useRouter();
   const params = useSearchParams();
-  const next = params.get("next") || "/app";
+  // Only allow same-site, absolute-path redirects. Reject "//evil.com",
+  // "https://…", and anything not starting with a single "/" to avoid an
+  // open-redirect via the ?next= param.
+  const rawNext = params.get("next") || "/app";
+  const next =
+    rawNext.startsWith("/") && !rawNext.startsWith("//") ? rawNext : "/app";
 
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);

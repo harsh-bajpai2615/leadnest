@@ -57,6 +57,11 @@ git push -u origin main
 
 ## Notes
 
+- **Use Neon's *pooled* connection string on Vercel.** Serverless functions each
+  open their own connection, so on a direct (non-`-pooler`) host you can exhaust
+  Postgres connections under load. Neon's dashboard offers a **Pooled connection**
+  whose host contains `-pooler` — use that for `DATABASE_URL` in Vercel. (For
+  one-off local `migrate deploy` / `db:seed`, the direct string is fine.)
 - **Migrations on deploy:** this project runs `prisma migrate deploy` manually
   (step 2). To make Vercel apply migrations on every deploy instead, set the
   build command to `prisma migrate deploy && prisma generate && next build`.
