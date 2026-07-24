@@ -8,7 +8,7 @@ trail. Two roles — **admin** and **member** — with permissions enforced on
 
 Built for the Digital Heroes Full Stack task (Role 04, Task A).
 
-**Live demo:** `<ADD_YOUR_VERCEL_URL_HERE>`
+**Live demo:** <https://leadnest-flame.vercel.app>
 **Demo logins** (password `Password123!` for all): see [Accounts](#demo-accounts).
 
 ---
