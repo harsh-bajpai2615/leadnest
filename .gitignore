@@ -45,3 +45,6 @@ next-env.d.ts
 
 # Prisma/agent tooling docs (not part of the app)
 .agents/
+
+# Local session-continuation notes (not part of the deliverable)
+/RESUME.md
