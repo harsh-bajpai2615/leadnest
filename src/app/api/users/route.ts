@@ -5,7 +5,7 @@ import { getServices } from "@/lib/services";
 import { ok, withErrors } from "@/lib/http";
 import { toPublicUser } from "@/lib/domain/types";
 
-// GET /api/users — the user directory, used to populate the assignment picker.
+// GET /api/users: the user directory, used to populate the assignment picker.
 // Admin-only, enforced on the server.
 export async function GET() {
   return withErrors(async () => {

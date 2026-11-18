@@ -4,7 +4,7 @@ import { getServices } from "@/lib/services";
 import { readSessionFromCookies } from "./session";
 
 // Server-side identity. Everything that needs "who is calling" goes through
-// here — route handlers AND server components — so authorization is enforced on
+// here, route handlers AND server components, so authorization is enforced on
 // the server regardless of what the client sends. The cookie is httpOnly and
 // signed, so it cannot be forged or read by client JS.
 

@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LeadNest — Lead Management",
+  title: "LeadNest: Lead Management",
   description:
     "A small, opinionated lead-management app: capture, assign, and move leads through a pipeline with a full activity trail.",
 };

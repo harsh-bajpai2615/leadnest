@@ -1,13 +1,13 @@
 import type { Lead, Role, User } from "./types";
 
 // ---------------------------------------------------------------------------
-// Authorization policy — the single source of truth for "who can do what".
+// Authorization policy: the single source of truth for "who can do what".
 //
 // These are PURE functions: no DB, no request objects. Every service action
 // calls the matching `can*` predicate, and the API + UI both read from here so
 // client and server can never drift. This module is exhaustively unit-tested.
 //
-// Policy (stated as an assumption per the brief — a small sales team):
+// Policy (stated as an assumption per the brief, a small sales team):
 //   • Public (no user)  -> may only submit a lead via the capture form.
 //   • MEMBER            -> sees all leads; may change status / add notes ONLY
 //                          on leads assigned to them; cannot assign leads or

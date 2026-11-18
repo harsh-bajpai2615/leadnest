@@ -2,7 +2,7 @@ import { z } from "zod";
 import { LEAD_STATUSES } from "@/lib/domain/types";
 
 // Request validation lives in one place. Route handlers parse with these and
-// let AppError("VALIDATION") map to 422 — they never trust raw input.
+// let AppError("VALIDATION") map to 422: they never trust raw input.
 
 export const loginSchema = z.object({
   email: z.string().email(),

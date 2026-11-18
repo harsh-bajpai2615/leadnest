@@ -4,7 +4,7 @@ import { SESSION_COOKIE_NAME } from "@/lib/auth/session";
 // Next 16's Proxy (formerly "middleware"). This is a UX guard only: it keeps
 // signed-out visitors out of the app shell and signed-in ones off the login
 // page. It intentionally does a cheap cookie-presence check and does NOT
-// enforce authorization — every protected route handler and server component
+// enforce authorization: every protected route handler and server component
 // independently verifies the signed session via requireUser()/requireRole().
 // Never rely on the proxy alone for access control.
 

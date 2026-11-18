@@ -144,7 +144,7 @@ export default async function LeadsPage({
                   <StatusBadge status={lead.status} />
                 </td>
                 <td className="px-4 py-3 text-[var(--muted)]">
-                  {lead.assignedToName ?? "—"}
+                  {lead.assignedToName ?? "-"}
                 </td>
                 <td className="px-4 py-3 text-[var(--muted)]">
                   {formatDateTime(lead.createdAt)}
@@ -161,7 +161,7 @@ export default async function LeadsPage({
             href={buildQuery({ page: String(page - 1) })}
             className="btn btn-ghost"
           >
-            ← Previous
+            Previous
           </Link>
         ) : (
           <span />
@@ -171,7 +171,7 @@ export default async function LeadsPage({
             href={buildQuery({ page: String(page + 1) })}
             className="btn btn-ghost"
           >
-            Next →
+            Next
           </Link>
         ) : (
           <span />

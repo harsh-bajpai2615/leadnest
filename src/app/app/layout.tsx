@@ -4,7 +4,7 @@ import { getCurrentUser } from "@/lib/auth/current-user";
 import { LogoutButton } from "@/components/LogoutButton";
 
 // Authenticated app shell. Server component: it resolves the current user and
-// redirects to /login if there isn't one — so authorization is enforced on the
+// redirects to /login if there isn't one, so authorization is enforced on the
 // server for every /app route, not just by middleware.
 export default async function AppLayout({
   children,
@@ -20,7 +20,7 @@ export default async function AppLayout({
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
           <div className="flex items-center gap-6">
             <Link href="/app" className="font-bold tracking-tight">
-              🪺 LeadNest
+              LeadNest
             </Link>
             <span className="text-xs text-[var(--muted)]">Pipeline</span>
           </div>

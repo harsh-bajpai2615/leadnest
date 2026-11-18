@@ -4,7 +4,7 @@ Principle: **strangler-fig, not big-bang.** New code goes behind a boundary; old
 code is replaced one endpoint at a time; the app never stops shipping and never
 goes down. Every phase leaves the system in a working, deployable state.
 
-## Week 1 — stop the bleeding (safety, no behaviour change)
+## Week 1: stop the bleeding (safety, no behaviour change)
 
 Goal: remove the acute risks and build the net that makes everything after this
 safe.
@@ -13,7 +13,7 @@ safe.
   `gitleaks`/secret-scanning to CI so a secret can never be merged again.
 - **Add CI** that runs on every push: typecheck + lint + tests (even if there are
   only three tests on day one). Red build = no merge.
-- **Characterization tests** on the top 3 revenue-critical flows — tests that
+- **Characterization tests** on the top 3 revenue-critical flows, tests that
   pin *current* behaviour so refactors can't silently change it.
 - **Lock the DB down at the network layer**: stop exposing it to the public
   internet, rotate its credentials, and put the real client behind server-only
@@ -24,7 +24,7 @@ safe.
 _Exit criteria: no secrets in the repo, green CI on every push, alerts firing to
 a channel, and a test that fails if checkout breaks._
 
-## Month 1 — introduce the boundary (the important one)
+## Month 1: introduce the boundary (the important one)
 
 Goal: kill "frontend talks to the DB" by standing up a real API and moving
 traffic to it endpoint-by-endpoint.
@@ -45,7 +45,7 @@ _Exit criteria: the highest-traffic and highest-risk data paths go through the
 API; the browser no longer holds DB credentials; auth is enforced server-side on
 every migrated route._
 
-## Quarter 1 — pay down and prevent
+## Quarter 1: pay down and prevent
 
 Goal: finish the migration, make the good path the easy path, and prevent
 regression.
@@ -68,8 +68,8 @@ dashboards alone._
 ## Sequencing rationale
 
 Security first (it's already exploitable), then the **test net** (so the risky
-work is survivable), then the **boundary** (the structural root cause — direct DB
-access — which also makes logic-in-handlers and missing-auth fixable), then
+work is survivable), then the **boundary** (the structural root cause, direct DB
+access, which also makes logic-in-handlers and missing-auth fixable), then
 **coverage and prevention**. Each phase is independently valuable: if the project
 were paused after Week 1, the system would still be materially safer than it is
 today.

@@ -58,7 +58,7 @@ export default async function LeadDetailPage({
   return (
     <div>
       <Link href="/app" className="text-sm text-[var(--muted)] hover:underline">
-        ← Back to leads
+        Back to leads
       </Link>
 
       <div className="mt-3 grid gap-6 lg:grid-cols-3">
@@ -76,8 +76,8 @@ export default async function LeadDetailPage({
               <StatusBadge status={lead.status} />
             </div>
             <dl className="mt-4 grid grid-cols-2 gap-3 text-sm">
-              <Info label="Phone" value={lead.phone ?? "—"} />
-              <Info label="Source" value={lead.source ?? "—"} />
+              <Info label="Phone" value={lead.phone ?? "-"} />
+              <Info label="Source" value={lead.source ?? "-"} />
               <Info label="Assigned to" value={lead.assignedToName ?? "Unassigned"} />
               <Info label="Captured" value={formatDateTime(lead.createdAt)} />
             </dl>

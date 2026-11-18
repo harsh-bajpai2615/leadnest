@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className="mx-auto w-full max-w-6xl px-6 py-14">
       <nav className="flex items-center justify-between mb-14">
-        <span className="text-lg font-bold tracking-tight">🪺 LeadNest</span>
+        <span className="text-lg font-bold tracking-tight">LeadNest</span>
         <Link href="/login" className="btn btn-ghost">
           Team sign in
         </Link>
@@ -22,13 +22,13 @@ export default function Home() {
           </h1>
           <p className="mt-4 text-[var(--muted)] text-lg max-w-md">
             LeadNest turns a website enquiry into an assigned, tracked deal with
-            a full activity trail — so your sales team always knows the next
+            a full activity trail, so your sales team always knows the next
             move and who owns it.
           </p>
           <ul className="mt-6 space-y-2 text-sm">
-            <li>✅ Public capture form → instant pipeline entry</li>
-            <li>✅ Assign owners, move stages, log every touch</li>
-            <li>✅ Admin &amp; member roles with real permissions</li>
+            <li>Public capture form with instant pipeline entry</li>
+            <li>Assign owners, move stages, log every touch</li>
+            <li>Admin &amp; member roles with real permissions</li>
           </ul>
         </div>
 

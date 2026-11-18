@@ -1,4 +1,4 @@
-// LeadNest — data model
+// LeadNest: data model
 // Design notes (see README "Data modeling"):
 //  - A Lead is the aggregate root. Notes and Activities hang off it and are
 //    append-only, which gives a trustworthy audit trail for free.

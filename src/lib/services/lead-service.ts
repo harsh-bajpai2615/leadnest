@@ -38,7 +38,7 @@ export interface UpdateLeadInput {
 export class LeadService {
   constructor(private readonly store: Store) {}
 
-  /** Public capture form. No actor — creates a NEW, unassigned lead. */
+  /** Public capture form. No actor: creates a NEW, unassigned lead. */
   async capture(input: CreateLeadInput): Promise<Lead> {
     const lead = await this.store.createLead(input);
     await this.store.appendActivity({
@@ -85,7 +85,7 @@ export class LeadService {
       leadId,
       actorId: actor.id,
       type: "STATUS_CHANGED",
-      summary: `${actor.name} moved status ${lead.status} → ${status}`,
+      summary: `${actor.name} moved status ${lead.status} to ${status}`,
       meta: { from: lead.status, to: status },
     });
     return updated;

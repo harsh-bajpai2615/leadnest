@@ -54,7 +54,7 @@ export function CaptureForm() {
   if (done) {
     return (
       <div className="card p-6 text-center" role="status">
-        <p className="text-lg font-semibold">Thanks — we&apos;ve got it. ✅</p>
+        <p className="text-lg font-semibold">Thanks, we&apos;ve got it.</p>
         <p className="mt-1 text-sm text-[var(--muted)]">
           Someone from the team will be in touch shortly.
         </p>

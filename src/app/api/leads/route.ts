@@ -5,7 +5,7 @@ import { toLeadDTOs } from "@/lib/serialize";
 import { captureLeadSchema, listLeadsQuerySchema } from "@/lib/validation";
 import type { LeadStatus } from "@/lib/domain/types";
 
-// GET /api/leads — authenticated list with pagination + filtering.
+// GET /api/leads: authenticated list with pagination + filtering.
 // Query params: status, assignedToId (id | "me" | "unassigned"), search, page, pageSize
 export async function GET(request: Request) {
   return withErrors(async () => {
@@ -40,7 +40,7 @@ export async function GET(request: Request) {
   });
 }
 
-// POST /api/leads — PUBLIC capture form. No auth. Creates a NEW lead.
+// POST /api/leads: PUBLIC capture form. No auth. Creates a NEW lead.
 export async function POST(request: Request) {
   return withErrors(async () => {
     const body = captureLeadSchema.parse(await parseJson(request));

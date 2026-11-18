@@ -4,7 +4,7 @@ import { makeWorld } from "./helpers";
 // End-to-end flows through the LeadService (same code the API calls), proving
 // both the happy paths and the permission boundaries.
 
-describe("Flow 1: public capture → admin assigns → member works the lead", () => {
+describe("Flow 1: public capture, admin assigns, member works the lead", () => {
   it("captures an unassigned NEW lead and logs a LEAD_CREATED activity", async () => {
     const { services, admin } = await makeWorld();
     const lead = await services.leads.capture({

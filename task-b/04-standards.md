@@ -10,7 +10,7 @@ most of them enforced by a machine so they don't depend on willpower.
 1. **No secrets in the repo.** Secret scanning (`gitleaks`) blocks the merge.
 2. **Green build to merge.** Typecheck + lint + tests run on every PR; red = no merge.
 3. **New code goes through the boundary.** Route handlers may not import the DB
-   client directly or contain business logic — a lint rule / import boundary
+   client directly or contain business logic: a lint rule / import boundary
    enforces "handlers call services, services use the `Store`."
 4. **Validate at the edge.** Every endpoint parses its input with a schema.
 5. **Migrations are reviewed and reversible.** Schema changes ship as migration
@@ -23,7 +23,7 @@ most of them enforced by a machine so they don't depend on willpower.
 7. **Authorization is server-side and centralized.** No new copy of an auth check.
 8. **PRs are small and single-purpose.** Easier to review, safer to roll back.
 
-Each rule traces directly to a defect in the assessment — I'm not importing a
+Each rule traces directly to a defect in the assessment; I'm not importing a
 generic checklist, I'm closing the specific holes this codebase has.
 
 ## Getting a resistant team to adopt them
@@ -40,7 +40,7 @@ them down without helping. So I'd earn it rather than mandate it.
   *less* typing than not. Standards win when they reduce friction.
 - **Automate the boring rules so review stays human.** Nobody argues with a
   linter. Moving secrets/format/boundary checks into CI removes them from code
-  review, so reviews are about design, not nagging — which lowers the
+  review, so reviews are about design, not nagging, which lowers the
   temperature.
 - **Introduce them as a team, not a mandate.** Propose the list, invite the two
   loudest skeptics to cut it down and own a rule each. People enforce what they

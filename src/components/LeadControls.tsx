@@ -21,7 +21,7 @@ interface Props {
 }
 
 // Client-side controls for a single lead. Every action calls the JSON API,
-// which re-checks the same permission policy on the server — the disabled
+// which re-checks the same permission policy on the server, the disabled
 // states here are a UX nicety, not the security boundary.
 export function LeadControls({
   leadId,

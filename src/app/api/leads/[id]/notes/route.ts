@@ -3,7 +3,7 @@ import { getServices } from "@/lib/services";
 import { ok, parseJson, withErrors } from "@/lib/http";
 import { addNoteSchema } from "@/lib/validation";
 
-// POST /api/leads/:id/notes — add a timestamped note (auth + policy)
+// POST /api/leads/:id/notes: add a timestamped note (auth + policy)
 export async function POST(
   request: Request,
   ctx: RouteContext<"/api/leads/[id]/notes">,

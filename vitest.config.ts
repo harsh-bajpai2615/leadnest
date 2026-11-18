@@ -1,7 +1,7 @@
 import { defineConfig } from "vitest/config";
 import { fileURLToPath } from "node:url";
 
-// Tests run in Node against the in-memory Store — no database required.
+// Tests run in Node against the in-memory Store, no database required.
 export default defineConfig({
   resolve: {
     alias: {

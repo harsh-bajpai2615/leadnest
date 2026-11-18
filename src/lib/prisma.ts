@@ -3,7 +3,7 @@ import { PrismaPg } from "@prisma/adapter-pg";
 
 // Prisma 7 requires a driver adapter for a direct connection. The client is
 // created LAZILY on first use (not at import time) so that importing the
-// services layer in a test — which wires a MemoryStore instead — never needs a
+// services layer in a test, which wires a MemoryStore instead, never needs a
 // DATABASE_URL or opens a pool. One client is cached per process and stashed on
 // globalThis so Next's dev-mode reloading doesn't leak connections.
 

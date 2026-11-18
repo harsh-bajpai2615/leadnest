@@ -5,7 +5,7 @@ import { toLeadDTOs } from "@/lib/serialize";
 import { updateLeadSchema } from "@/lib/validation";
 import type { LeadStatus } from "@/lib/domain/types";
 
-// GET /api/leads/:id — lead detail with notes + activity timeline (auth)
+// GET /api/leads/:id: lead detail with notes + activity timeline (auth)
 export async function GET(
   _request: Request,
   ctx: RouteContext<"/api/leads/[id]">,
@@ -26,7 +26,7 @@ export async function GET(
   });
 }
 
-// PATCH /api/leads/:id — change status and/or assignment (auth + policy)
+// PATCH /api/leads/:id: change status and/or assignment (auth + policy)
 export async function PATCH(
   request: Request,
   ctx: RouteContext<"/api/leads/[id]">,
