@@ -48,3 +48,9 @@ next-env.d.ts
 
 # Local session-continuation notes (not part of the deliverable)
 /RESUME.md
+
+# AI tool files
+CLAUDE.md
+AGENTS.md
+.claude/
+.windsurf/
